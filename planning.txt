@@ -1,0 +1,8 @@
+
+matching game
+
+display panels that when clicked reveal an image
+
+if the same images are clicked they remain visible.
+
+reset button

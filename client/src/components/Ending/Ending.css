@@ -1,0 +1,9 @@
+.ending {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  text-decoration: underline;
+  color:lightgreen;
+  margin-bottom: 50px;
+  height: 350px;
+}

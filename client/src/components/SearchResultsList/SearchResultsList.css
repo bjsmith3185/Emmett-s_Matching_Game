@@ -1,0 +1,17 @@
+
+.searchresultlist-title {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.searchresult-li {
+  list-style: none;
+}
+
+.searchresult-word {
+  font-weight: bold;
+  color: red;
+  font-size: 20px;
+  margin: 3px;
+}
+
