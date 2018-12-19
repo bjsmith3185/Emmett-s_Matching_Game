@@ -9,13 +9,29 @@
   text-align: left;
 }
 
-.card > .img-container {
+.border {
+  margin: 4px;
+  background: #fff;
+  /* background: red; */
+  border-radius: 2px;
+  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+}
+
+.redBorder {
+  margin: 4px;
+  background: red;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+}
+
+.img-container {
+  z-index: 2;
   height: 100%;
   overflow: hidden;
   text-align: center;
   background:#6CADDC;
 }
-.card > .img-container > img {
+/* img {
   width: 60%
-}
+} */
 

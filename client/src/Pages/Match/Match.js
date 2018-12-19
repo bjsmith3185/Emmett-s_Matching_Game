@@ -15,7 +15,8 @@ class Match extends Component {
 
     gameOver: false,
     condition: "",
-    firstPick: "",
+    firstPickName: "",
+    firstPickId: "",
     secondPick: "",
     checkForWinner: false,
 
@@ -76,6 +77,7 @@ class Match extends Component {
         tempObj.image = redbox;
         console.log("new obj with redbox")
         console.log(tempObj)
+        tempObj.matched = true;
 
         tempArray.push(tempObj);
       } else {
@@ -90,30 +92,52 @@ class Match extends Component {
 
   };
 
-  clickImage = (name) => {
+  clickImage = (name, id, matched) => {
     console.log(` this is the name: ${name}.`);
+    console.log(` this is the id: ${id}.`);
+    console.log(`has been matched status: ${matched}`)
 
-    if (this.state.firstPick) {
-      if (this.state.firstPick === name) {
-        // matches!11
-        console.log(`${this.state.firstPick} is the same as ${name}`)
-        // this.setState({
-        //   firstPick: "",
-        // })
-        this.changeImage(this.state.firstPick, name);
+    if (matched) {
+      console.log("this one has already been matched")
+      return;
+    }
+
+    if (this.state.firstPickName) {
+      console.log(`first id: ${this.state.firstPickId} second id: ${id}`)
+      if (this.state.firstPickName === name) {
+        if (this.state.firstPickId === id) {
+          // doesnot match
+          console.log(`${this.state.firstPickName} does not match ${name}`)
+          this.setState({
+            firstPickName: "",
+            firstPickId: "",
+          })
+        } else {
+                    // matches!11
+          console.log(`${this.state.firstPickName} is the same as ${name}`)
+          // this.setState({
+          //   firstPick: "",
+          // })
+          this.changeImage(this.state.firstPickName, name);
+
+        }
+
+
 
       } else {
         // doesnot match
-        console.log(`${this.state.firstPick} does not match ${name}`)
+        console.log(`${this.state.firstPickName} does not match ${name}`)
         this.setState({
-          firstPick: "",
+          firstPickName: "",
+          firstPickId: "",
         })
 
       }
 
     } else {
       this.setState({
-        firstPick: name,
+        firstPickName: name,
+        firstPickId: id,
       })
     }
 
@@ -152,6 +176,8 @@ class Match extends Component {
                 key={item.id}
                 image={item.image}
                 name={item.name}
+                matched={item.matched}
+                id={item.id}
               />
             ))
           )}
