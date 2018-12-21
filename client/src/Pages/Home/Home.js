@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Nav from "../../components/Nav";
 import "./Home.css";
+import easyVersion from "../../easyVersion.json";
 
 
 class Home extends Component {
 
-
+  componentDidMount() {
+   
+    console.log(easyVersion)
+  };
 
 
   redirectMatch = () => {

@@ -3,28 +3,28 @@ const db = require("../models");
 module.exports = {
 
   findAll: function () {
-    return db.Advertisements
+    return db.Matching
       .find({})
   },
-  findByCompany: function (company) {
-    return db.Advertisements
+  findByCategory: function (company) {
+    return db.Matching
       .find({ company: company })
   },
   create: function (data) {
-    return db.Advertisements
+    return db.Matching
       .create(data)
   },
   update: function (company, data) {
-    return db.Advertisements
+    return db.Matching
       .findOneAndUpdate({ company: company }, data, {upsert: true})
   },
   remove: function (company) {
-    return db.Advertisements
+    return db.Matching
     .findOneAndRemove({company: company})
   },
 
   removeAll: function () {
-    return db.Advertisements
+    return db.Matching
     .deleteMany({})
   },
 

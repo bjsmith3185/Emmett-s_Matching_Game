@@ -7,7 +7,6 @@ import Ending from "../../components/Ending";
 import easyVersion from "../../easyVersion.json";
 import "./Match.css";
 import redbox from "../../images/Red_Square.png";
-import API from '../../utils/API';
 
 class Match extends Component {
 
@@ -24,8 +23,8 @@ class Match extends Component {
   };
 
   componentDidMount() {
-    this.loadGame();
-    console.log("component did mount")
+    this.resetGame(easyVersion);
+    console.log(easyVersion)
   };
 
   shuffle = (array) => {
@@ -54,25 +53,16 @@ class Match extends Component {
       secondPick: "",
       // checkForWinner: false,
     })
-    
   }
 
-  loadGame() {
-    // console.log("call to get game array")
-    
-    API.getMatchArray()
-    .then(res => {
+  resetGame(array) {
+    this.clearState();
 
-      let shuffleArray = this.shuffle(res.data);
-      console.log("this is the shuffled array")
-      console.log(shuffleArray);
-      this.setState({
-        gameArray: shuffleArray
-      })
+    let shuffledArray = this.shuffle(array);
+
+    this.setState({
+      gameArray: shuffledArray,
     })
-    .catch(err => console.log(err));
-
-    
   };
 
   checkForGameOver = () => {
@@ -182,13 +172,12 @@ class Match extends Component {
 
   };
 
-  // playAgain = (array) => {
-  //   this.resetGame(array)
-  // }
+  playAgain = (array) => {
+    this.resetGame(array)
+  }
 
   redirectHomePage = () => {
     this.props.history.push({ pathname: "/" });
-    this.clearState();
   }
 
 
@@ -211,11 +200,11 @@ class Match extends Component {
             this.state.gameArray.map(item => (
               <Card
                 clickImage={this.clickImage}
-                key={item._id}
+                key={item.id}
                 image={item.image}
                 name={item.name}
                 matched={item.matched}
-                id={item._id}
+                id={item.id}
               />
             ))
           )}

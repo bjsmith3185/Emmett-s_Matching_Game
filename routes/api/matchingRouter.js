@@ -1,12 +1,11 @@
 const router = require("express").Router();
-const details = require("../../controllers/searchMatchesController");
+const matchingGameController = require("../../controllers/matchingGameController");
 
-
-// Matches with "/api/advertisements"
+// Matches with "/api/matching"
 
 router.route("/")
   .get((req, res) => {
-    details.findAll()
+    matchingGameController.findAll()
       .then(dbresults => {
         res.json(dbresults)})
       .catch(err => res.status(422).json(err))
@@ -14,36 +13,43 @@ router.route("/")
 
   router.route("/")
   .post((req, res) => {
-    details.create(req.body)
+    matchingGameController.create(req.body)
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/:company")
+  router.route("/remove")
+  .delete((req, res) => {
+    matchingGameController.remove()
+      .then(dbresults => res.json(dbresults))
+      .catch(err => res.status(422).json(err))
+  });
+
+  router.route("/:search")
   .get((req, res) => {
-    details.findByCompany({ company:req.params.company })
+    matchingGameController.findBySearch({ search:req.params.search })
     .then(dbresults => {
       res.json(dbresults)})
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/:company")
+  router.route("/:search")
   .put((req, res) => {
-    details.update(req.params.company, req.body)
+    matchingGameController.update(req.params.search, req.body)
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/:company")
+  router.route("/:search")
   .delete((req, res) => {
-    details.remove(req.params.company)
+    matchingGameController.remove(req.params.search)
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
   });
+
 
 
 module.exports = router;
-
 
 
 

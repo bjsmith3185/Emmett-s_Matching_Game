@@ -1,17 +1,10 @@
 const router = require("express").Router();
-const searchesRoutes = require("./searchesRouter");
-const advertisementsRoutes = require("./advertisementsRouter");
-const displayAdvertisementsRoutes = require("./displayAdvertisementsRouter");
-const detailsRoutes = require("./detailsRouter");
-const modifyRoutes = require("./modifyRouter");
+const matchingRoutes = require("./matchingRouter");
 const populateRoutes = require("./populateRouter");
 
 //  routes
-router.use("/searches", searchesRoutes);
-router.use("/advertisements", advertisementsRoutes);
-router.use("/displayads", displayAdvertisementsRoutes);
-router.use("/details", detailsRoutes);
-router.use("/modify", modifyRoutes);
+router.use("/matching", matchingRoutes);
+
 
 // populate routes
 router.use("/populate", populateRoutes);

@@ -1,63 +1,75 @@
 const router = require("express").Router();
-const advertisements = require("../../controllers/advertisementsController");
+const matchingGameController = require("../../controllers/matchingGameController");
 
 
 // Matches with "/api/populate"
 
-const advertisementsSeedArray = [
+const matchingSeedArray = [
     {
-        company: "Amazon",
-        keywords: ["books", "tv", "games", "everything", "amazon"],
-        image: "https://beyondpesticides.org/dailynewsblog/wp-content/uploads/2017/03/Amazon-Logo.jpg",
-        link: "https://www.amazon.com/",
-        description: "Shop Amazon to get lower prices on everything.",
+        clicked: false,
+        matched: false,
+        name: "spongebob",
+        image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
     },
 
     {
-        company: "Target",
-        keywords: ["clothes", "soap", "detergent", "target"],
-        image: "https://pbs.twimg.com/profile_images/960896975737622528/-5k32D4t_400x400.jpg",
-        link: "https://www.target.com/",
-        description: "Shop at Target because you are better than Walmart! Bring your Wallet",
+        clicked: false,
+        matched: false,
+        name: "mrKrab",
+        image: "https://vignette3.wikia.nocookie.net/vsbattles/images/8/80/Mr._Krabs.png/revision/latest?cb=20150919162131"
+
     },
-
-
     {
-        company: "UNCC",
-        keywords: ["coding", "bootcamp", "learning", "uncc"],
-        image: "https://images-na.ssl-images-amazon.com/images/I/61ZuoCK%2B3vL._SX425_.jpg",
-        link: "https://bootcamp.uncc.edu/coding/",
-        description: "Join us while we learn to code and type. Click the link for more info.",
+        clicked: false,
+        matched: false,
+        name: "Squidward",
+        image: "https://vignette2.wikia.nocookie.net/fictionalcharacters/images/a/ac/Squidward.png/revision/latest?cb=20131121012626"
     },
 
     {
-        company: "Trader Joes",
-        keywords: ["organic", "bagless", "apples", "snacks", "trader joes"],
-        image: "https://fortunedotcom.files.wordpress.com/2016/03/776-ft-lauderdale-fl-night.jpg",
-        link: "https://www.traderjoes.com/",
-        description: "Come shop at Trader Joes, Everyone is doing it! Bring your own bag too.",
+        clicked: false,
+        matched: false,
+        name: "otherGuy",
+        image: "https://s-media-cache-ak0.pinimg.com/originals/fe/32/49/fe32495d45283cd6860ae122f0aeaad9.png"
     },
 
     {
-        company: "Walmart",
-        keywords: ["walmart", "toys", "christmas", "gifts", "electronics"],
-        image: "https://visitlaramie.org/wp-content/uploads/2013/06/walmart-logo.jpg",
-        link: "https://www.walmart.com/",
-        description: "Shop Walmart this Christmas, even on Christmas day.",
+        clicked: false,
+        matched: false,
+        name: "spongebob",
+        image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
+    },
+    {
+        clicked: false,
+        matched: false,
+        name: "mrKrab",
+        image: "https://vignette3.wikia.nocookie.net/vsbattles/images/8/80/Mr._Krabs.png/revision/latest?cb=20150919162131"
+    },
+    {
+        clicked: false,
+        matched: false,
+        name: "Squidward",
+        image: "https://vignette2.wikia.nocookie.net/fictionalcharacters/images/a/ac/Squidward.png/revision/latest?cb=20131121012626"
+    },
+    {
+        clicked: false,
+        matched: false,
+        name: "otherGuy",
+        image: "https://s-media-cache-ak0.pinimg.com/originals/fe/32/49/fe32495d45283cd6860ae122f0aeaad9.png"
     },
 ]
 
 
 router.route("/")
     .post((req, res) => {
-        advertisements.removeAll()
+        matchingGameController.removeAll()
             .then(dbresults => {
 
-                for (var i = 0; i < advertisementsSeedArray.length; i++) {
-                    advertisements.create(advertisementsSeedArray[i])
+                for (var i = 0; i < matchingSeedArray.length; i++) {
+                    matchingGameController.create(matchingSeedArray[i])
                         .then(dbresults => {
-                            console.log("deleted and populated advertisements collection")
-                            
+                            console.log("deleted and populated matching collection")
+
                         })
                         .catch(err => res.status(422).json(err))
                 }
