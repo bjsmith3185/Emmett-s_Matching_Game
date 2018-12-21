@@ -6,21 +6,23 @@ module.exports = {
     return db.Matching
       .find({})
   },
-  findByCategory: function (company) {
+  findByCategory: function (category) {
+    console.log("controller, findbycategory")
+    console.log(category)
     return db.Matching
-      .find({ company: company })
+      .find(category)
   },
   create: function (data) {
     return db.Matching
       .create(data)
   },
-  update: function (company, data) {
+  update: function (category, data) {
     return db.Matching
-      .findOneAndUpdate({ company: company }, data, {upsert: true})
+      .findOneAndUpdate({ category: category }, data, {upsert: true})
   },
-  remove: function (company) {
+  remove: function (category) {
     return db.Matching
-    .findOneAndRemove({company: company})
+    .findOneAndRemove({category: category})
   },
 
   removeAll: function () {

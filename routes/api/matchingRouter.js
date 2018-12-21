@@ -25,24 +25,26 @@ router.route("/")
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/:search")
+  router.route("/:category")
   .get((req, res) => {
-    matchingGameController.findBySearch({ search:req.params.search })
+    matchingGameController.findByCategory({ category:req.params.category })
     .then(dbresults => {
+      console.log("this is the return from the database server")
+      console.log(dbresults);
       res.json(dbresults)})
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/:search")
+  router.route("/:category")
   .put((req, res) => {
-    matchingGameController.update(req.params.search, req.body)
+    matchingGameController.update(req.params.category, req.body)
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
   });
 
-  router.route("/:search")
+  router.route("/:category")
   .delete((req, res) => {
-    matchingGameController.remove(req.params.search)
+    matchingGameController.remove(req.params.category)
       .then(dbresults => res.json(dbresults))
       .catch(err => res.status(422).json(err))
   });

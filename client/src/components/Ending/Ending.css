@@ -4,7 +4,7 @@
   font-size: 3rem;
   text-decoration: underline;
   color:red;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   height: 100%;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .winner-img {
-  height: 60%;
-  width: 90%;
+  height: 400px;
+  width: 400px;
   border: 5px solid red;
 }

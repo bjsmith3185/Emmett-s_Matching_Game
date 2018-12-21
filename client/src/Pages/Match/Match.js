@@ -7,13 +7,14 @@ import Ending from "../../components/Ending";
 import easyVersion from "../../easyVersion.json";
 import "./Match.css";
 import redbox from "../../images/Red_Square.png";
+import stripes from "../../images/whiteblacklines.png";
 import API from '../../utils/API';
 
 class Match extends Component {
 
   state = {
     gameArray: [],
-    gameType: "",
+    gameCategory: "",
     gameOver: false,
     condition: "",
     firstPickName: "",
@@ -28,7 +29,7 @@ class Match extends Component {
     let game = localStorage.getItem("gameSelected")
     console.log(`this is the game selected: ${game}.`)
     this.setState({
-      gameType: game,
+      gameCategory: game,
     })
     this.loadGame(game);
 
@@ -58,16 +59,17 @@ class Match extends Component {
       firstPickName: "",
       firstPickId: "",
       secondPick: "",
+      gameCategory: "",
       // checkForWinner: false,
     })
 
   }
 
-  loadGame(gameType) {
-console.log(gameType);
+  loadGame(gameCategory) {
+console.log(gameCategory);
 // pass gameType into getMatchArray()
 
-    API.getMatchArray()
+    API.getMatchArray(gameCategory)
       .then(res => {
 
         let shuffleArray = this.shuffle(res.data);
@@ -115,7 +117,7 @@ console.log(gameType);
         console.log("this is the temp obj that matches")
         console.log(tempObj)
 
-        tempObj.image = redbox;
+        tempObj.image = stripes;
         console.log("new obj with redbox")
         console.log(tempObj)
         tempObj.matched = true;

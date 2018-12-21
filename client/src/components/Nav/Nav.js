@@ -7,9 +7,9 @@ const Nav = () => (
 
     <a className="navbar-brand" href="/">Home</a>
 
-    <a className="navbar-brand" href="/search">SearchPage</a>
+    {/* <a className="navbar-brand" href="/search">SearchPage</a>
 
-    <a className="navbar-brand" href="/admin">Admin</a>
+    <a className="navbar-brand" href="/admin">Admin</a> */}
     
   </nav>
 

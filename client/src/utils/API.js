@@ -3,8 +3,8 @@ import axios from "axios";
 
 export default {
 
-  getMatchArray: function () {  
-    return axios.get("/api/matching");
+  getMatchArray: function (category) {  
+    return axios.get("/api/matching/" + category);
   },
 
   // saveSearch: function (data) {  
