@@ -13,10 +13,11 @@ class Match extends Component {
 
   state = {
     gameArray: [],
-
+    gameType: "",
     gameOver: false,
     condition: "",
     firstPickName: "",
+    firstPickId: "",
     firstPickId: "",
     secondPick: "",
     // checkForWinner: false,
@@ -24,8 +25,13 @@ class Match extends Component {
   };
 
   componentDidMount() {
-    this.loadGame();
-    console.log("component did mount")
+    let game = localStorage.getItem("gameSelected")
+    console.log(`this is the game selected: ${game}.`)
+    this.setState({
+      gameType: game,
+    })
+    this.loadGame(game);
+
   };
 
   shuffle = (array) => {
@@ -54,25 +60,26 @@ class Match extends Component {
       secondPick: "",
       // checkForWinner: false,
     })
-    
+
   }
 
-  loadGame() {
-    // console.log("call to get game array")
-    
+  loadGame(gameType) {
+console.log(gameType);
+// pass gameType into getMatchArray()
+
     API.getMatchArray()
-    .then(res => {
+      .then(res => {
 
-      let shuffleArray = this.shuffle(res.data);
-      console.log("this is the shuffled array")
-      console.log(shuffleArray);
-      this.setState({
-        gameArray: shuffleArray
+        let shuffleArray = this.shuffle(res.data);
+        console.log("this is the shuffled array")
+        console.log(shuffleArray);
+        this.setState({
+          gameArray: shuffleArray
+        })
       })
-    })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
 
-    
+
   };
 
   checkForGameOver = () => {
@@ -90,6 +97,7 @@ class Match extends Component {
         gameOver: true,
       })
       // this.resetGame();
+      this.gameOverTimeOut();
     }
   };
 
@@ -142,35 +150,39 @@ class Match extends Component {
 
     if (this.state.firstPickName) {
       console.log(`first id: ${this.state.firstPickId} second id: ${id}`)
-      if (this.state.firstPickName === name) {
-        if (this.state.firstPickId === id) {
+      // check to see if the second one clicked is the same as the first
+      if (id === this.state.firstPickId) {
+        console.log(`first id: ${this.state.firstPickId}, current click: ${id}`)
+        console.log("same one previously picked");
+        return;
+      } else {
+
+        if (this.state.firstPickName === name) {
+          if (this.state.firstPickId === id) {
+            // doesnot match
+            console.log(`${this.state.firstPickName} does not match ${name}`)
+            this.setState({
+              firstPickName: "",
+              firstPickId: "",
+            })
+          } else {
+            // matches!11
+            console.log(`${this.state.firstPickName} is the same as ${name}`)
+            // this.setState({
+            //   firstPick: "",
+            // })
+            this.changeImage(this.state.firstPickName, name);
+
+          }
+
+        } else {
           // doesnot match
           console.log(`${this.state.firstPickName} does not match ${name}`)
           this.setState({
             firstPickName: "",
             firstPickId: "",
           })
-        } else {
-          // matches!11
-          console.log(`${this.state.firstPickName} is the same as ${name}`)
-          // this.setState({
-          //   firstPick: "",
-          // })
-          this.changeImage(this.state.firstPickName, name);
-
         }
-
-
-
-      } else {
-        // doesnot match
-        console.log(`${this.state.firstPickName} does not match ${name}`)
-        this.setState({
-          firstPickName: "",
-          firstPickId: "",
-
-        })
-
       }
 
     } else {
@@ -182,11 +194,12 @@ class Match extends Component {
 
   };
 
-  // playAgain = (array) => {
-  //   this.resetGame(array)
-  // }
-
+  gameOverTimeOut = () => {
+    setTimeout(this.redirectHomePage, 5000);
+  }
+ 
   redirectHomePage = () => {
+
     this.props.history.push({ pathname: "/" });
     this.clearState();
   }
@@ -200,9 +213,9 @@ class Match extends Component {
 
         {this.state.gameOver ? (
           <Ending
-          homePage={this.redirectHomePage}
+            // homePage={this.redirectHomePage}
           />
-         
+
 
           // <Ending score={this.state.score} condition={this.state.condition} restart={this.restart} />
 

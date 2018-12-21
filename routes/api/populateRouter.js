@@ -6,56 +6,65 @@ const matchingGameController = require("../../controllers/matchingGameController
 
 const matchingSeedArray = [
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "spongebob",
-        image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
+        name: "a",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/09/A1.png"
     },
 
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "mrKrab",
-        image: "https://vignette3.wikia.nocookie.net/vsbattles/images/8/80/Mr._Krabs.png/revision/latest?cb=20150919162131"
+        name: "a",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/09/A1.png"
 
     },
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "Squidward",
-        image: "https://vignette2.wikia.nocookie.net/fictionalcharacters/images/a/ac/Squidward.png/revision/latest?cb=20131121012626"
+        name: "b",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/09/B3.png"
     },
 
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "otherGuy",
-        image: "https://s-media-cache-ak0.pinimg.com/originals/fe/32/49/fe32495d45283cd6860ae122f0aeaad9.png"
+        name: "b",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/09/B3.png"
     },
 
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "spongebob",
-        image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
+        name: "c",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/10/C.png"
     },
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "mrKrab",
-        image: "https://vignette3.wikia.nocookie.net/vsbattles/images/8/80/Mr._Krabs.png/revision/latest?cb=20150919162131"
+        name: "c",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/10/C.png"
     },
     {
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "Squidward",
-        image: "https://vignette2.wikia.nocookie.net/fictionalcharacters/images/a/ac/Squidward.png/revision/latest?cb=20131121012626"
+        name: "d",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/09/D1.png"
     },
     {
+        category: "letters",
+        category: "letters",
         clicked: false,
         matched: false,
-        name: "otherGuy",
-        image: "https://s-media-cache-ak0.pinimg.com/originals/fe/32/49/fe32495d45283cd6860ae122f0aeaad9.png"
+        name: "d",
+        image: "http://homeschooled-kids.com/hskidsonline/wp-content/uploads/2013/09/D1.png"
     },
 ]
 

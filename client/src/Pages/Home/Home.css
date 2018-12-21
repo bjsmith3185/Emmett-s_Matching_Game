@@ -1,22 +1,18 @@
 
 
-.home-p {
-    font-weight: bold;
-    font-size: 20px;
+
+.home-header {
+    padding: 15px;
 }
 
-.home-top {
-    margin-top: 25px;
+.home-title {
+    font-size: 30px;
+    color: blue;
+    margin: 0 auto;
+    font-weight: bolder;
+
 }
 
-.home-h3 {
-    font-size: 40px;
-}
-
-.home-h1 {
-    font-size: 60px;
-}
-
-.admin-header {
-    padding: 25px;
+.home-select-area {
+    margin-top: 10px;
 }

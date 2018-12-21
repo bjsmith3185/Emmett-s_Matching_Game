@@ -3,7 +3,19 @@
   text-align: center;
   font-size: 3rem;
   text-decoration: underline;
-  color:lightgreen;
+  color:red;
   margin-bottom: 50px;
   height: 100%;
+}
+
+.winner-area {
+  padding: 75px;
+
+
+}
+
+.winner-img {
+  height: 60%;
+  width: 90%;
+  border: 5px solid red;
 }
