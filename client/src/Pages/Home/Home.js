@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Nav from "../../components/Nav";
 import Wrapper from "../../components/Wrapper";
 import "./Home.css";
 import gamesArray from "../../gamesArray.json";
@@ -15,14 +14,14 @@ class Home extends Component {
 
   componentDidMount() {
     localStorage.clear();
-    console.log(gamesArray)
+    // console.log(gamesArray)
     this.setState({
       games: gamesArray
     })
   };
 
   playGame = (selected) => {
-    console.log(selected)
+    // console.log(selected)
     localStorage.setItem("gameSelected", selected);
     this.redirectMatch();
   }
@@ -61,8 +60,6 @@ class Home extends Component {
               />
 
             ))}
-
-
 
           </div>
 

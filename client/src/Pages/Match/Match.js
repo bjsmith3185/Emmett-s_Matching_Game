@@ -2,11 +2,9 @@
 import React, { Component } from "react";
 import Card from "../../components/Card";
 import Wrapper from "../../components/Wrapper";
-import Title from "../../components/Title";
 import Ending from "../../components/Ending";
-import easyVersion from "../../easyVersion.json";
+import endings from "../../endings.json";
 import "./Match.css";
-import redbox from "../../images/Red_Square.png";
 import stripes from "../../images/whiteblacklines.png";
 import API from '../../utils/API';
 
@@ -19,20 +17,30 @@ class Match extends Component {
     condition: "",
     firstPickName: "",
     firstPickId: "",
-    firstPickId: "",
-    secondPick: "",
-    // checkForWinner: false,
 
+    gameEnding: "",
   };
 
   componentDidMount() {
     let game = localStorage.getItem("gameSelected")
-    console.log(`this is the game selected: ${game}.`)
+    // console.log(`this is the game selected: ${game}.`)
     this.setState({
       gameCategory: game,
+
     })
+    this.setEnding(game);
     this.loadGame(game);
 
+  };
+
+  setEnding = (game) => {
+    for (var i = 0; i < endings.length; i++) {
+      if (game === endings[i].category) {
+        this.setState({
+          gameEnding: endings[i].clip
+        })
+      }
+    }
   };
 
   shuffle = (array) => {
@@ -58,23 +66,22 @@ class Match extends Component {
       condition: "",
       firstPickName: "",
       firstPickId: "",
-      secondPick: "",
+      // secondPick: "",
       gameCategory: "",
-      // checkForWinner: false,
+
     })
 
   }
 
   loadGame(gameCategory) {
-    console.log(gameCategory);
-    // pass gameType into getMatchArray()
+    // console.log(gameCategory);
 
     API.getMatchArray(gameCategory)
       .then(res => {
 
         let shuffleArray = this.shuffle(res.data);
-        console.log("this is the shuffled array")
-        console.log(shuffleArray);
+        // console.log("this is the shuffled array")
+        // console.log(shuffleArray);
         this.setState({
           gameArray: shuffleArray
         })
@@ -93,8 +100,8 @@ class Match extends Component {
       }
     }
     if (count === this.state.gameArray.length) {
-      console.log("game over")
-      console.log(`number of true:${count}, length of array: ${this.state.gameArray.length}`)
+      // console.log("game over")
+      // console.log(`number of true:${count}, length of array: ${this.state.gameArray.length}`)
       this.setState({
         gameOver: true,
       })
@@ -104,8 +111,8 @@ class Match extends Component {
   };
 
   changeImage = (first, second) => {
-    console.log("changing image")
-    console.log(`first image name ${first}, second image name ${second}`)
+    // console.log("changing image")
+    // console.log(`first image name ${first}, second image name ${second}`)
 
     // change the image value in this.state.gameArray to a solid color;
     let tempArray = [];
@@ -114,12 +121,12 @@ class Match extends Component {
     for (var i = 0; i < this.state.gameArray.length; i++) {
       if (first === this.state.gameArray[i].name) {
         tempObj = this.state.gameArray[i];
-        console.log("this is the temp obj that matches")
-        console.log(tempObj)
+        // console.log("this is the temp obj that matches")
+        // console.log(tempObj)
 
         tempObj.image = stripes;
-        console.log("new obj with redbox")
-        console.log(tempObj)
+        // console.log("new obj with redbox")
+        // console.log(tempObj)
         tempObj.matched = true;
 
         tempArray.push(tempObj);
@@ -140,13 +147,13 @@ class Match extends Component {
   };
 
   clickImage = (name, id, matched) => {
-    console.log(` this is the name: ${name}.`);
-    console.log(` this is the id: ${id}.`);
-    console.log(`has been matched status: ${matched}`)
-    console.log("this is firstPickName value: " + this.state.firstPickName)
+    // console.log(` this is the name: ${name}.`);
+    // console.log(` this is the id: ${id}.`);
+    // console.log(`has been matched status: ${matched}`)
+    // console.log("this is firstPickName value: " + this.state.firstPickName)
 
     if (matched) {
-      console.log("this one has already been matched")
+      // console.log("this one has already been matched")
       return;
     }
 
@@ -154,32 +161,28 @@ class Match extends Component {
       console.log(`first id: ${this.state.firstPickId} second id: ${id}`)
       // check to see if the second one clicked is the same as the first
       if (id === this.state.firstPickId) {
-        console.log(`first id: ${this.state.firstPickId}, current click: ${id}`)
-        console.log("same one previously picked");
+        // console.log(`first id: ${this.state.firstPickId}, current click: ${id}`)
+        // console.log("same one previously picked");
         return;
       } else {
 
         if (this.state.firstPickName === name) {
           if (this.state.firstPickId === id) {
             // doesnot match
-            console.log(`${this.state.firstPickName} does not match ${name}`)
+            // console.log(`${this.state.firstPickName} does not match ${name}`)
             this.setState({
               firstPickName: "",
               firstPickId: "",
             })
           } else {
-            // matches!11
-            console.log(`${this.state.firstPickName} is the same as ${name}`)
-            // this.setState({
-            //   firstPick: "",
-            // })
+            // matches!
+            // console.log(`${this.state.firstPickName} is the same as ${name}`)
             this.changeImage(this.state.firstPickName, name);
-
           }
 
         } else {
           // doesnot match
-          console.log(`${this.state.firstPickName} does not match ${name}`)
+          // console.log(`${this.state.firstPickName} does not match ${name}`)
           this.setState({
             firstPickName: "",
             firstPickId: "",
@@ -209,12 +212,13 @@ class Match extends Component {
 
   render = () => {
     return (
-      <div className="row">
-        <div className="col-sm-12">
+
           <Wrapper>
 
             {this.state.gameOver ? (
-              <Ending    />
+              <Ending
+                clip={this.state.gameEnding}
+              />
 
             ) : (
 
@@ -231,8 +235,6 @@ class Match extends Component {
               )}
 
           </Wrapper>
-        </div>
-      </div>
 
     );
   };

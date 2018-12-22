@@ -1,33 +1,32 @@
 .ending {
   width: 100%;
   text-align: center;
-  font-size: 30px;
-  text-decoration: underline;
+
   color:red;
-  /* margin-bottom: 50px; */
+
   height: 100%;
 }
 
 .ending-title {
   width: 100%;
   text-align: center;
-  font-size: 30px;
-  text-decoration: underline;
+  font-size: 40px;
+  font-weight: bolder;
+  /* text-decoration: underline; */
   color:red;
-  /* margin-bottom: 50px; */
-  
+ 
 }
 
 .winner-area {
-  padding: 30px;
+  padding: 10px;
 
 
 }
 
 .winner-img {
-  height: 400px;
-  width: 400px;
-  border: 5px solid red;
+  height:300px;
+  width:300px;
+  /* border: 5px solid red; */
 }
 
 
