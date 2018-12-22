@@ -66,8 +66,8 @@ class Match extends Component {
   }
 
   loadGame(gameCategory) {
-console.log(gameCategory);
-// pass gameType into getMatchArray()
+    console.log(gameCategory);
+    // pass gameType into getMatchArray()
 
     API.getMatchArray(gameCategory)
       .then(res => {
@@ -199,7 +199,7 @@ console.log(gameCategory);
   gameOverTimeOut = () => {
     setTimeout(this.redirectHomePage, 5000);
   }
- 
+
   redirectHomePage = () => {
 
     this.props.history.push({ pathname: "/" });
@@ -209,33 +209,31 @@ console.log(gameCategory);
 
   render = () => {
     return (
-      <Wrapper>
+      <div className="row">
+        <div className="col-sm-12">
+          <Wrapper>
 
-        {/* <Title score={this.state.score} topScore={this.state.topScore} >Click an image but dont click it twice!!!</Title> */}
+            {this.state.gameOver ? (
+              <Ending    />
 
-        {this.state.gameOver ? (
-          <Ending
-            // homePage={this.redirectHomePage}
-          />
+            ) : (
 
+                this.state.gameArray.map(item => (
+                  <Card
+                    clickImage={this.clickImage}
+                    key={item._id}
+                    image={item.image}
+                    name={item.name}
+                    matched={item.matched}
+                    id={item._id}
+                  />
+                ))
+              )}
 
-          // <Ending score={this.state.score} condition={this.state.condition} restart={this.restart} />
+          </Wrapper>
+        </div>
+      </div>
 
-        ) : (
-
-            this.state.gameArray.map(item => (
-              <Card
-                clickImage={this.clickImage}
-                key={item._id}
-                image={item.image}
-                name={item.name}
-                matched={item.matched}
-                id={item._id}
-              />
-            ))
-          )}
-
-      </Wrapper>
     );
   };
 };
