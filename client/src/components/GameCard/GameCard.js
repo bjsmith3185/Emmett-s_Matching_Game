@@ -5,10 +5,9 @@ const GameCard = props => (
 
   <div className="gamecard-border text-center">
     <div className="gamecard text-center" onClick={() => props.playGame(props.name)}>
-      {/* <div className="img-container text-center" onClick={() => props.clickImage(props.name)}> */}
 
         <img className="gamecard-img"  alt={props.name} src={props.image} />
-      {/* </div> */}
+
     </div>
   </div>
 
